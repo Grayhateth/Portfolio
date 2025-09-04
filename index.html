@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grayhateth - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444c56;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .glow-button {
+            position: relative;
+            z-index: 1;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #f06, #0ff, #ff0, #f06);
+            background-size: 400%;
+            border-radius: 12px;
+            filter: blur(8px);
+            z-index: -1;
+            transition: 0.5s;
+        }
+
+        .glow-button:hover::before {
+            background-size: 100% 100%;
+        }
+
+        /* Moving Stars Background Animation */
+        #stars-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: transparent;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: move-stars linear infinite;
+        }
+
+        @keyframes move-stars {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* 'Download Resume' Button Transition */
+        .download-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1d9dff, #38e1e1, #ff00ff, #1d9dff);
+            background-size: 200% 200%;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .download-btn:hover::before {
+            transform: translateX(0);
+        }
+
+        .download-btn span {
+            position: relative;
+            z-index: 1;
+            mix-blend-mode: difference;
+        }
+    </style>
+</head>
+
+<body class="bg-[#0d1117]">
+
+    <div id="stars-bg"></div>
+
+    <header class="sticky top-0 z-50 bg-[#0d1117]/80 backdrop-blur-sm shadow-md py-4">
+        <nav class="container mx-auto flex justify-between items-center px-6">
+            <a href="#hero" class="text-2xl font-bold text-white transition-colors duration-300 hover:text-cyan-400">
+                Grayhateth.
+            </a>
+            <ul class="hidden md:flex space-x-8 text-lg">
+                <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+                <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-300">Skills</a></li>
+                <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a></li>
+                <li><a href="#experience" class="text-gray-400 hover:text-white transition-colors duration-300">Experience</a></li>
+                <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+            </ul>
+            <div class="md:hidden">
+                <button id="menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#0d1117] shadow-lg p-4 transition-all duration-300">
+            <ul class="flex flex-col space-y-4 text-center">
+                <li><a href="#about" class="block text-gray-400 hover:text-white text-lg">About</a></li>
+                <li><a href="#skills" class="block text-gray-400 hover:text-white text-lg">Skills</a></li>
+                <li><a href="#projects" class="block text-gray-400 hover:text-white text-lg">Projects</a></li>
+                <li><a href="#experience" class="block text-gray-400 hover:text-white text-lg">Experience</a></li>
+                <li><a href="#contact" class="block text-gray-400 hover:text-white text-lg">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="text-white relative z-10">
+
+        <section id="hero" class="h-screen flex items-center justify-center text-center px-6" style="background-color: #0d1117;">
+            <div class="max-w-4xl mx-auto">
+                <p class="text-cyan-400 text-lg font-medium mb-3 animate-fade-in-up">Hello, I'm</p>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-scale-in">
+                    Grayhateth
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-up delay-200">
+                    A Passionate Full Stack Developer & UI/UX Designer
+                </p>
+                <a href="#contact" class="inline-block py-3 px-8 text-lg font-semibold rounded-full text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 glow-button animate-fade-in-up delay-400">
+                    Let's Connect
+                </a>
+            </div>
+        </section>
+        
+        <div class="container mx-auto px-6 py-12 md:py-24">
+            <hr class="border-gray-700 mb-12">
+            <section id="about" class="my-16">
+                <div class="flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-12">
+                    <div class="w-full md:w-1/3 flex justify-center">
+                        <img src="./images/image2.jpg" alt="Grayhateth" class="rounded-full shadow-lg border-4 border-gray-800 object-cover w-48 h-48 md:w-64 md:h-64">
+                    </div>
+                    <div class="w-full md:w-2/3 text-center md:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Me</h2>
+                        <p class="text-lg text-gray-400 mb-6 leading-relaxed">
+                            I am a detail-oriented and creative full-stack developer with over 5 years of experience in building high-performing, user-friendly, and responsive web applications. My expertise spans across modern technologies like React, Node.js, and Python, allowing me to craft seamless solutions from front-end design to back-end logic. I'm passionate about solving complex problems and creating intuitive digital experiences.
+                        </p>
+                        <a href="./Doc/grayhateth.pdf" class="inline-block py-2 px-6 rounded-md text-white bg-gray-800 hover:bg-gray-700 transition-colors duration-300 download-btn">
+                            <span>Download Resume <i class="fas fa-download ml-2"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="border-gray-700 my-12">
+        
+            <section id="skills" class="my-16">
+                <h2 class="text-center text-3xl md:text-4xl font-bold text-white mb-10">My Skills</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-4xl text-cyan-400 mb-4 text-center">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-center text-white">Front-End Development</h3>
+                        <p class="text-gray-400 text-center">React, Vue.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS</p>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-4xl text-green-400 mb-4 text-center">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-center text-white">Back-End Development</h3>
+                        <p class="text-gray-400 text-center">Node.js, Express, Python, Django, REST APIs, GraphQL</p>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-4xl text-blue-400 mb-4 text-center">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-center text-white">Databases</h3>
+                        <p class="text-gray-400 text-center">MongoDB, PostgreSQL, MySQL, Firebase, Redis</p>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-4xl text-purple-400 mb-4 text-center">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-center text-white">UI/UX Design</h3>
+                        <p class="text-gray-400 text-center">Figma, Sketch, Adobe XD, Prototyping, Usability Testing</p>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-4xl text-orange-400 mb-4 text-center">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-center text-white">Tools & DevOps</h3>
+                        <p class="text-gray-400 text-center">Git, GitHub, Docker, AWS, Heroku, Netlify, Vercel</p>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-4xl text-rose-400 mb-4 text-center">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2 text-center text-white">Security & Performance</h3>
+                        <p class="text-gray-400 text-center">Authentication, Authorization, Performance Optimization, Caching</p>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="border-gray-700 my-12">
+        
+            <section id="projects" class="my-16">
+                <h2 class="text-center text-3xl md:text-4xl font-bold text-white mb-10">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-[#161b22] rounded-xl overflow-hidden shadow-lg group">
+                        <img src="https://placehold.co/600x400/30363d/c9d1d9?text=E-Commerce+Platform" alt="Project 1" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">E-Commerce Platform</h3>
+                            <p class="text-gray-400 mb-4 text-sm">A full-featured e-commerce site with secure payment integration, user authentication, and a dynamic product catalog.</p>
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-300">View Project <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] rounded-xl overflow-hidden shadow-lg group">
+                        <img src="https://placehold.co/600x400/30363d/c9d1d9?text=Social+Media+App" alt="Project 2" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Social Media App</h3>
+                            <p class="text-gray-400 mb-4 text-sm">A social networking platform built with a real-time chat feature, user profiles, and image sharing capabilities.</p>
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-300">View Project <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] rounded-xl overflow-hidden shadow-lg group">
+                        <img src="https://placehold.co/600x400/30363d/c9d1d9?text=Portfolio+Builder" alt="Project 3" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-white mb-2">Portfolio Builder</h3>
+                            <p class="text-gray-400 mb-4 text-sm">A user-friendly tool that allows developers to create and deploy personalized portfolios with various templates.</p>
+                            <a href="#" class="text-cyan-400 hover:text-cyan-300 font-medium transition-colors duration-300">View Project <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="border-gray-700 my-12">
+        
+            <section id="experience" class="my-16">
+                <h2 class="text-center text-3xl md:text-4xl font-bold text-white mb-10">My Journey</h2>
+                <div class="relative max-w-4xl mx-auto">
+                    <div class="absolute left-1/2 -translate-x-1/2 w-1 bg-gray-700 h-full hidden sm:block"></div>
+                    
+                    <div class="space-y-12">
+                        <div class="flex flex-col sm:flex-row items-center sm:justify-start">
+                            <div class="w-full sm:w-1/2 sm:pr-8 text-center sm:text-right">
+                                <h3 class="text-xl font-semibold text-white">Software Engineer</h3>
+                                <p class="text-gray-400 text-sm italic">Tech Innovators Inc. (2022 - Present)</p>
+                                <p class="text-gray-400 mt-2">Led a team in developing a scalable microservices architecture for a new platform, reducing latency by 40%.</p>
+                            </div>
+                            <div class="relative w-8 h-8 rounded-full bg-cyan-400 border-2 border-cyan-200 z-10 hidden sm:block"></div>
+                            <div class="w-full sm:w-1/2 sm:pl-8 mt-4 sm:mt-0"></div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center sm:justify-end">
+                            <div class="w-full sm:w-1/2 sm:pl-8 mt-4 sm:mt-0 order-2 sm:order-1 text-center sm:text-left">
+                                <h3 class="text-xl font-semibold text-white">Full Stack Developer & Software Analyst</h3>
+                                <p class="text-gray-400 text-sm italic">Teetytech Abuja Nigeria. (2021 - 2023)</p>
+                                <p class="text-gray-400 mt-2">Developed responsive web applications using React and Node.js.</p>
+                            </div>
+                            <div class="relative w-8 h-8 rounded-full bg-cyan-400 border-2 border-cyan-200 z-10 order-1 sm:order-2 hidden sm:block"></div>
+                            <div class="w-full sm:w-1/2 sm:pr-8 order-3 sm:order-3"></div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center sm:justify-end">
+                            <div class="w-full sm:w-1/2 sm:pl-8 mt-4 sm:mt-0 order-2 sm:order-1 text-center sm:text-left">
+                                <h3 class="text-xl font-semibold text-white">Full Stack Developer</h3>
+                                <p class="text-gray-400 text-sm italic">Creative Solutions Co. (2019 - 2021)</p>
+                                <p class="text-gray-400 mt-2">Designed and implemented new features for client websites, improving user engagement by 25% and reducing bounce rates.</p>
+                            </div>
+                            <div class="relative w-8 h-8 rounded-full bg-cyan-400 border-2 border-cyan-200 z-10 order-1 sm:order-2 hidden sm:block"></div>
+                            <div class="w-full sm:w-1/2 sm:pr-8 order-3 sm:order-3"></div>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center sm:justify-start">
+                            <div class="w-full sm:w-1/2 sm:pr-8 text-center sm:text-right">
+                                <h3 class="text-xl font-semibold text-white">Web Development Intern</h3>
+                                <p class="text-gray-400 text-sm italic">Innovate Labs (2018 - 2019)</p>
+                                <p class="text-gray-400 mt-2">Assisted in the development of front-end components and contributed to the maintenance of existing web applications.</p>
+                            </div>
+                            <div class="relative w-8 h-8 rounded-full bg-cyan-400 border-2 border-cyan-200 z-10 hidden sm:block"></div>
+                            <div class="w-full sm:w-1/2 sm:pl-8 mt-4 sm:mt-0"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="border-gray-700 my-12">
+
+            <section id="testimonials" class="my-16">
+                <h2 class="text-center text-3xl md:text-4xl font-bold text-white mb-10">Client Feedback</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md">
+                        <p class="text-gray-400 italic mb-4">"Grayhateth is an incredibly talented and dedicated developer. His work on our platform was transformative, and he consistently exceeded our expectations with his problem-solving skills."</p>
+                        <div class="flex items-center space-x-4">
+                            <img src="https://placehold.co/60x60/30363d/c9d1d9?text=Jane" alt="Jane Doe" class="rounded-full w-12 h-12">
+                            <div>
+                                <h4 class="text-white font-semibold">Adee Jerry</h4>
+                                <p class="text-gray-500 text-sm">CTO, Tech Solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md">
+                        <p class="text-gray-400 italic mb-4">"Working with Grayhateth was a pleasure. He has a great eye for design and delivered a beautiful, fully functional website that has received rave reviews from our users."</p>
+                        <div class="flex items-center space-x-4">
+                            <img src="https://placehold.co/60x60/30363d/c9d1d9?text=Alex" alt="Alex Smith" class="rounded-full w-12 h-12">
+                            <div>
+                                <h4 class="text-white font-semibold">Peter Akor</h4>
+                                <p class="text-gray-500 text-sm">Founder, Innovate Co.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#161b22] p-8 rounded-xl shadow-md">
+                        <p class="text-gray-400 italic mb-4">"Grayhateth's technical expertise and professionalism are unmatched. He delivered a complex project on time and within budget, and his communication was excellent throughout."</p>
+                        <div class="flex items-center space-x-4">
+                            <img src="https://placehold.co/60x60/30363d/c9d1d9?text=Emily" alt="Emily White" class="rounded-full w-12 h-12">
+                            <div>
+                                <h4 class="text-white font-semibold">Taibath Tiamiyu</h4>
+                                <p class="text-gray-500 text-sm">Marketing Director, Datanet Corp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+            <hr class="border-gray-700 my-12">
+        
+            <section id="contact" class="my-16">
+                <h2 class="text-center text-3xl md:text-4xl font-bold text-white mb-4">Let's Talk</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">
+                    I'm currently available for new projects. Whether you have a question, a job or just want to say hi, feel free to reach out.
+                </p>
+                <form id="contact-form" action="https://formspree.io/f/{{mzzakvdk}}" method="POST" class="max-w-xl mx-auto bg-[#161b22] p-8 rounded-xl shadow-md">
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-400 text-sm font-medium mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-md bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-400 text-sm font-medium mb-2">Your Email</label>
+                        <input type="email" id="email" name="_replyto" required class="w-full px-4 py-3 rounded-md bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-400 text-sm font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" required class="w-full px-4 py-3 rounded-md bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 px-6 rounded-md text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 transition-colors duration-300">
+                        Send Message
+                    </button>
+                    <div id="form-message" class="mt-4 text-center hidden"></div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-[#161b22] py-8 mt-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://www.linkedin.com/in/samuel-ojele-a54bb824a" class="text-2xl hover:text-white transition-colors duration-300"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/grayhateth" class="text-2xl hover:text-white transition-colors duration-300"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/grayhateth" class="text-2xl hover:text-white transition-colors duration-300"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2024 Grayhateth. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scrollToTopBtn" class="scroll-to-top bg-gray-800 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu after clicking a link
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Show/hide scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Stars animation generator
+        function createStars() {
+            const starsContainer = document.getElementById('stars-bg');
+            const numberOfStars = 100;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `-${Math.random() * 100}vh`; // Start stars above the viewport
+                star.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+</body>
+</html>
