@@ -473,5 +473,43 @@
         }
         createStars();
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+            const formMessage = document.getElementById('form-message');
+    
+            form.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Prevents the default redirect
+    
+                const formData = new FormData(form);
+    
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+    
+                    if (response.ok) {
+                        form.reset(); // Clears all form inputs
+                        formMessage.textContent = "Thank you! Your message has been sent successfully.";
+                        formMessage.classList.remove('hidden'); // Makes the message visible
+                        formMessage.classList.add('text-green-500'); // Styles the message for success
+                    } else {
+                        formMessage.textContent = "Oops! Something went wrong. Please try again.";
+                        formMessage.classList.remove('hidden');
+                        formMessage.classList.add('text-red-500');
+                    }
+                } catch (error) {
+                    formMessage.textContent = "A network error occurred. Please check your connection.";
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.add('text-red-500');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
