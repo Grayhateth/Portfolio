@@ -2,8 +2,6 @@
 <html lang="en" dir="ltr">
 
   
-<!-- Mirrored from mixdesign.dev/themeforest/rayo/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Sep 2025 08:37:46 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="UTF-8">
 
@@ -11,7 +9,7 @@
     <title>Contact </title>
 
     <!-- Meta Tags -->
-    <meta name="description" content="Elevate your digital presence with Rayo - dynamic and stylish HTML template designed for creative agencies and personal brands. With modern layouts, smooth interactions and a polished aesthetic, Rayo template helps showcase projects, services and expertise with clarity and impact.">
+    <meta name="description" content="Elevate your digital presence with  - dynamic and stylish HTML template designed for creative agencies and personal brands. With modern layouts, smooth interactions and a polished aesthetic,  template helps showcase projects, services and expertise with clarity and impact.">
     <meta name="keywords" content="mix_design, resume, portfolio, personal page, cv, template, one page, responsive, html5, css3, creative, clean">
     <meta name="author" content="mix_design">
 
@@ -29,8 +27,8 @@
     <!-- Facebook Metadata Start -->
     <meta property="og:image:height" content="1200">
     <meta property="og:image:width" content="1200">
-    <meta property="og:title" content="Rayo - Digital Agency & Personal Portfolio HTML Template">
-    <meta property="og:description" content="Elevate your digital presence with Rayo - dynamic and stylish HTML template designed for creative agencies and personal brands. With modern layouts, smooth interactions and a polished aesthetic, Rayo template helps showcase projects, services and expertise with clarity and impact.">
+    <meta property="og:title" content="Gray - Digital Agency & Personal Portfolio">
+    <meta property="og:description" content="Elevate your digital presence with Gray - dynamic and stylish HTML template designed for creative agencies and personal brands. With modern layouts, smooth interactions and a polished aesthetic, Gray template helps showcase projects, services and expertise with clarity and impact.">
     <meta property="og:url" content="https://mixdesign.dev/themeforest/rayo">
     <meta property="og:image" content="img/og-image.html">
     <!-- Facebook Metadata End -->
@@ -407,10 +405,10 @@
                         <!-- Reply Messages End -->
           
                         <!-- Contact Form Start -->
-                        <form class="form contact-form" id="contact-form">
+                        <form class="form contact-form" id="contact-form" action ="https://formspree.io/f/mzzakvdk" method="POST">
                           <!-- Hidden Required Fields -->
-                          <input type="hidden" name="project_name" value="Rayo Template">
-                          <input type="hidden" name="admin_email" value="support@mixdesign.dev">
+                          <input type="hidden" name="project_name" value="Grayhateth Template">
+                          <input type="hidden" name="admin_email" value="grayhateth@gmail.com">
                           <input type="hidden" name="form_subject" value="Contact Form Message">
                           <!-- END Hidden Required Fields-->
                           <div class="container-fluid p-0">
@@ -456,6 +454,49 @@
         </div>
       </div>
       <!-- Section - Inner Page Form End -->
+
+       <script>
+    // Get the new form wrapper and the reply div from the HTML
+    const formWrapper = document.getElementById('form-wrapper');
+    const form = document.getElementById('contact-form');
+    const replyDiv = document.getElementById('form-reply');
+
+    // Listen for the 'submit' event on the form
+    form.addEventListener('submit', async (e) => {
+      // Prevent the default form submission (which would reload the page)
+      e.preventDefault();
+      
+      const formData = new FormData(form);
+      try {
+        // Use fetch to send the form data to Formspree in the background
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        // Check if the submission was successful
+        if (response.ok) {
+          // Clear the form fields
+          form.reset();
+          // Hide the form wrapper
+          formWrapper.style.display = 'none';
+          // Show the success message
+          replyDiv.style.display = 'block';
+        } else {
+          // Log the error to the console
+          console.error('Form submission failed with status:', response.status);
+          console.error('This issue is often due to network issues or browser security policies when running locally.');
+        }
+      } catch (error) {
+        // Catch network errors
+        console.error('Error submitting form:', error);
+        console.error('This is often a CORS error when running on a local server. The form should work when hosted on a live domain.');
+      }
+    });
+  </script>
 
       <!-- Section - Parallax Divider Start -->
       <div class="mxd-section padding-grid-pre-mtext">
@@ -972,5 +1013,5 @@
   </body>
 
 
-<!-- Mirrored from mixdesign.dev/themeforest/rayo/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 05 Sep 2025 08:37:47 GMT -->
+
 </html>
